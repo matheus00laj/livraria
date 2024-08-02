@@ -1,16 +1,15 @@
 let tabelaLivros = document.querySelector('#livros');
-tabelaLivros.addEventListener('click', (event)=>{
-    let elementClicked = event.target;
+tabelaLivros.addEventListener('click', (evento) => {
+    let elementoClicado = evento.target;
 
-    if(elementClicked.dataset.type == 'remove'){
-        let livroId = elementClicked.dataset.ref;
-        fetch(`http://loclahost:3000/livros/${livroId}`, { method: 'DELETE'})
-        .then((response)=>{
+    if (elementoClicado.dataset.type == 'remocao') {
+        let livroId = elementoClicado.dataset.ref;
+        fetch(`http://localhost:3000/livros/${livroId}`, { method: 'DELETE' })
+            .then(resposta => {
 
-            let tr = elementClicked.closest(`#livro_${livroID}`);
-            tr.remove();
-        }).catch((err)=>{
-            console.log(err);
-        })
+                let tr = elementoClicado.closest(`#livro_${livroId}`);
+                tr.remove();
+            })
+            .catch(erro => console.log(erro));
     }
-})
+});
